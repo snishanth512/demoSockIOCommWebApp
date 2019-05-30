@@ -6,8 +6,10 @@ var io = require('socket.io')(http);
 var demoMsg = require('./demo.json');
 var i = 0;
 var conf = require('./config.json');
+var opn = require('opn');
 
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
+app.use('/chart.js', express.static(__dirname + '/node_modules/chart.js/dist/'));
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
@@ -32,3 +34,5 @@ function periodicMessageSend() {
 }
 
 setInterval(periodicMessageSend, 3000);
+
+opn('http://localhost:'+conf.httpPort);
