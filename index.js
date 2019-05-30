@@ -1,8 +1,11 @@
-var app = require('express')();
+'use strict';
 var express = require('express');
+var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var demoMsg = require('./demo.json')
+var demoMsg = require('./demo.json');
+var i = 0;
+var conf = require('./config.json');
 
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 
@@ -12,15 +15,13 @@ app.get('/', function (req, res) {
 
 io.on('connection', function (socket) {
   socket.on('browserMessage', function (msg) {
-    console.log('message: ' + msg);
+    console.log('\tmessage:\t' + msg);
   });
 });
 
-http.listen(3000, function () {
-  console.log('listening on *:3000');
+http.listen(conf.httpPort, function () {
+  console.log('\tserver started:\t', conf.httpPort);
 });
-
-var i = 0;
 
 function periodicMessageSend() {
   var message;
