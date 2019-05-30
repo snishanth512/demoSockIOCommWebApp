@@ -1,7 +1,10 @@
 var app = require('express')();
+var express = require('express');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var demoMsg = require('./demo.json')
+
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
