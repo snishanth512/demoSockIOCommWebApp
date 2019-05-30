@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Message from Server</title>
+</head>
+<style>
+  .clTable {
+    table-layout: fixed;
+    border-collapse: collapse;
+    border: 2px solid black;
+  }
+
+  .clTable td,
+  .clTable th {
+    padding: 10px;
+    border: 1px solid black;
+  }
+
+  body {
+    font-family: sans-serif;
+  }
+  
+</style>
+
+<body>
+  <table id="msgTableId" class="clTable" align="left">
+    <tr>
+      <td>
+        <form action="">
+          topic <input id="m" autocomplete="off" />  <button>Send</button>
+        </form>
+      </td>
+    </tr>
+    <tr>
+      <th align="left">
+        Message Received
+      </th>
+    </tr>
+  </table>
+  <br>
+  <dl id="messages"></dl>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script>
+    $(function () {
+      var socket = io();
+      var msgCount = 0;
+      var viewTable = document.getElementById("msgTableId");
+      var row;
+      var cell = [];
+
+      cell.length = 5;
+
+      $('form').submit(function (e) {
+        e.preventDefault();
+        socket.emit('browserMessage', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+
+      for (var index = 0; index < cell.length; index++) {
+        row = viewTable.insertRow(-1);
+        cell[index] = row.insertCell(0);
+      }
+      socket.on('browserMessage', function (msg) {
+        cell[msgCount].innerHTML = msg;
+        msgCount++;
+        if (msgCount >= cell.length) {
+          msgCount = msgCount % cell.length;
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
