@@ -20,15 +20,17 @@
   body {
     font-family: sans-serif;
   }
-  
 </style>
 
 <body>
   <table id="msgTableId" class="clTable" align="left">
     <tr>
+      <td rowspan="7">
+        Redirect Links
+      </td>
       <td>
         <form action="">
-          topic <input id="m" autocomplete="off" />  <button>Send</button>
+          topic <input id="m" autocomplete="off" /> <button>Send</button>
         </form>
       </td>
     </tr>
@@ -48,8 +50,7 @@
       var msgCount = 0;
       var viewTable = document.getElementById("msgTableId");
       var row;
-      var cell = [];
-
+      var cell = [], msgCells = [];
       cell.length = 5;
 
       $('form').submit(function (e) {
@@ -62,6 +63,7 @@
       for (var index = 0; index < cell.length; index++) {
         row = viewTable.insertRow(-1);
         cell[index] = row.insertCell(0);
+        // msgCells[index] = row.insertCell(1);
       }
       socket.on('browserMessage', function (msg) {
         cell[msgCount].innerHTML = msg;
