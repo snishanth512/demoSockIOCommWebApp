@@ -35,4 +35,4 @@ function periodicMessageSend() {
 
 setInterval(periodicMessageSend, 3000);
 
-browserOpen('http://localhost:'+conf.httpPort);
+browserOpen('http://localhost:' + conf.httpPort);
