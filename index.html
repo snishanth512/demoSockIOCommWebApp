@@ -16,6 +16,7 @@
     padding: 10px;
     border: 1px solid black;
   }
+
   .clTable {
     width: 100%;
   }
@@ -32,32 +33,32 @@
 
 <body>
   <div>
-  <table id="msgTableId" class="clTable" align="left">
-    <tr>
-      <td rowspan="7">
-        Redirect Links
-      </td>
-      <td>
-        <form action="">
-          topic <input id="m" autocomplete="off" /> <button>Send</button>
-        </form>
-      </td>
-    </tr>
-    <tr>
-      <th align="left">
-        Message Received
-      </th>
-    </tr>
-  </table>
+    <table id="msgTableId" class="clTable" align="left">
+      <tr>
+        <td rowspan="7">
+          Redirect Links
+        </td>
+        <td>
+          <form action="">
+            topic <input id="m" autocomplete="off" /> <button>Send</button>
+          </form>
+        </td>
+      </tr>
+      <tr>
+        <th align="left">
+          Message Received
+        </th>
+      </tr>
+    </table>
   </div>
   <br>
   <div>
-      <p> sample text </p>
+    <p> sample text </p>
   </div>
-  
+
   <div class="container">
-      <canvas id="plot2dId"></canvas>
-    </div>
+    <canvas id="plot2dId"></canvas>
+  </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/jquery/jquery.js"></script>
   <script src="/chart.js/chart.js"></script>
@@ -98,12 +99,12 @@
       socket.on('browserMessage', function (msg) {
         cell[msgCount].innerHTML = msg;
         data = [];
-        data.length=7;
-        for (var index=0; index< data.length; index++){
+        data.length = 7;
+        for (var index = 0; index < data.length; index++) {
           data[index] = Math.random();
         }
-      labels = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-      renderChart(data, labels);
+        labels = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+        renderChart(data, labels);
         msgCount++;
         if (msgCount >= cell.length) {
           msgCount = msgCount % cell.length;
