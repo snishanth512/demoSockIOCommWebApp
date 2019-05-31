@@ -31,11 +31,6 @@
     width: auto;
     height: auto;
   }
-
-  .chartContainer {
-    width: auto;
-    height: auto;
-  }
 </style>
 
 <body>
@@ -59,32 +54,9 @@
     </table>
   </div>
   <br>
-  <div class="chartContainer">
-    <canvas id="plot2dId"></canvas>
-  </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/jquery/jquery.min.js"></script>
-  <script src="/chart.js/Chart.min.js"></script>
   <script>
-    function notePopup() {
-      var popup = document.getElementById("notePopupId");
-      popup.classList.toggle("show");
-    }
-    function renderChart(data, labels) {
-      var ctx = document.getElementById("plot2dId").getContext('2d');
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: labels,
-          datasets: [{
-            label: 'This week',
-            borderColor: "#8e5ea2",
-            fill: false,
-            data: data
-          }]
-        },
-      });
-    }
     $(function () {
       var socket = io();
       var msgCount = 0;
@@ -107,13 +79,6 @@
 
       socket.on('mqDevMessage', function (msg) {
         cell[msgCount].innerHTML = msg;
-        // data = [];
-        // data.length = 7;
-        // for (var index = 0; index < data.length; index++) {
-        //   data[index] = Math.random();
-        // }
-        // labels = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-        // renderChart(data, labels);
         msgCount++;
         if (msgCount >= cell.length) {
           msgCount = msgCount % cell.length;
