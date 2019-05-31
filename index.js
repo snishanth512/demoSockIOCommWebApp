@@ -15,6 +15,14 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/index', function (req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
+app.get('/about', function (req, res) {
+  res.sendFile(__dirname + '/about.html');
+});
+
 io.on('connection', function (socket) {
   socket.on('browserMessage', function (msg) {
     console.log('\tmessage:\t' + msg);
