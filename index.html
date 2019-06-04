@@ -20,6 +20,32 @@
   <a href="msgnchart" target="_blank"> Message and Chart </a>
   <br>
   <br>
+  <br>
+  <div>
+    username <input type="text" id="usernameTextId" /> <br> <br>
+    password <input type="password" id="lockTextId" /><br> <br>
+    <input type="button" value="Submit" id="submitId">
+  </div>
+
+  <br>
+  <script src="/jquery/jquery.min.js">  </script>
+  <script>
+    $(document).ready(function () {
+      var user, pass;
+      $("#submitId").click(function () {
+        console.log('\tclick event');
+        user = $("#usernameTextId").val();
+        pass = $("#lockTextId").val();
+        $.post("http://localhost:3000/register", { user: user, password: pass }, function (data) {
+          if (data === 'done') {
+            alert("login success");
+            $("#usernameTextId").val('');
+            $("#lockTextId").val('');
+          }
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>

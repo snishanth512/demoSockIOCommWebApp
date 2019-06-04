@@ -1,5 +1,6 @@
 'use strict';
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
@@ -51,6 +52,7 @@ client.on('error', function (err) {
   console.log('\tError:\t', err);
 })
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/chart.js', express.static(__dirname + '/node_modules/chart.js/dist/'));
 
@@ -72,6 +74,11 @@ app.get('/msgnchart', function (req, res) {
 
 app.get('/device', function (req, res) {
   res.sendFile(__dirname + '/device.html');
+});
+
+app.post('/register', function (req, res) {
+  console.log('\t',req.body);
+  res.send("done");
 });
 
 io.on('connection', function (socket) {
