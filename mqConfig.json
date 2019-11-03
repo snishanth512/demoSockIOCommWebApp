@@ -1,0 +1,8 @@
+{
+  "mqttIp": "test.mosquitto.org",
+  "mqttPort": 1883,
+  "mqttUsername": "",
+  "mqttLock": "",
+  "mqttTopicPrefix": "",
+  "mqttTopicSuffix": ""
+}

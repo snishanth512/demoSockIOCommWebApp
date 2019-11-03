@@ -7,7 +7,7 @@ var io = require('socket.io')(http);
 var demoMsg = require(__dirname + '/demo.json');
 var i = 0;
 var conf = require(__dirname + '/config.json');
-var mqConfig = require(__dirname + '/../mqConfig.json');
+var mqConfig = require(__dirname + '/mqConfig.json');
 var mqTopic = mqConfig.mqttTopicPrefix+'+'+mqConfig.mqttTopicSuffix;
 /*
 {
