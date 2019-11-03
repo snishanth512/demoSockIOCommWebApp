@@ -9,25 +9,15 @@ var i = 0;
 var conf = require(__dirname + '/config.json');
 var mqConfig = require(__dirname + '/mqConfig.json');
 var mqTopic = mqConfig.mqttTopicPrefix+'+'+mqConfig.mqttTopicSuffix;
-/*
-{
-	"mqttIp":test.mosquitto.org ,
-  "mqttPort": 1883,
-	"mqttUsername": "",
-  "mqttLock": "",
-  "mqttTopicPrefix": "",
-	"mqttTopicSuffix": ""
-}
- */
-
 var browserOpen = require('open');
 var mqtt = require('mqtt');
+
 var mqCliOptions = {
   "keepalive": 60,
   "clean": true,
   "reconnectPeriod": 10000,
-  "username": '' + mqConfig.mqttUsername,
-  "password": '' + mqConfig.mqttLock,
+  //"username": '' + mqConfig.mqttUsername,
+  //"password": '' + mqConfig.mqttLock,
   "clientId": 'mqttjs_' + Math.random().toString(16).substr(2, 8),
   "protocolId": 'MQTT'
 }
