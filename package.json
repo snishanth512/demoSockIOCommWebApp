@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "express": "^4.17.1",
     "jquery": "^3.4.1",
     "mqtt": "^3.0.0",
